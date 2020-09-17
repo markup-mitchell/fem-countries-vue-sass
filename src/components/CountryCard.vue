@@ -17,7 +17,7 @@
 
 <style lang="scss">
 .card {
-  // width: 264px;
+  height: 100%;
   border-radius: 5px;
   overflow: hidden;
   color: inherit;
