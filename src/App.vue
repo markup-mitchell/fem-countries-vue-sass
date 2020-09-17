@@ -10,9 +10,12 @@
       </div>
     </header>
     <div class="page-wrapper">
+      <div class="filter-layout">
+        <Filters />
+      </div>
       <div class="grid">
         <div
-          v-for="country in countries"
+          v-for="country in selectedRegion"
           :key="country.alpha2code"
           class="card-wrapper"
         >
@@ -32,10 +35,11 @@
 
 <script>
 import DarkModeToggle from './components/DarkModeToggle';
+import Filters from './components/Filters';
 import CountryCard from './components/CountryCard';
 export default {
   name: 'App',
-  components: { CountryCard, DarkModeToggle },
+  components: { CountryCard, DarkModeToggle, Filters },
   data() {
     return {
       countries: this.$parent.data,
@@ -50,6 +54,12 @@ export default {
   computed: {
     mode: function() {
       return this.darkMode ? 'dark' : 'light';
+    },
+    selectedRegion: function() {
+      let region = 'Europe';
+      return this.countries.filter((country) => {
+        return country.region === region;
+      });
     }
   }
 };
@@ -114,6 +124,7 @@ export default {
 
   &__contents {
     display: flex;
+    height: 100%;
     justify-content: space-between;
     align-items: center;
     max-width: 1280px;
@@ -138,6 +149,9 @@ export default {
   margin: 0 auto;
   @media (min-width: 768px) {
     padding: 0 80px;
+  }
+  .filter-layout {
+    margin: 2.5rem 0;
   }
 }
 </style>
