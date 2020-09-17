@@ -1,7 +1,7 @@
 <template>
   <Article class="card">
     <div class="flag-wrapper">
-      <img :src="flag" :alt="name + ' flag'" />
+      <img :src="flag" :alt="name + ' flag'" loading="lazy" />
     </div>
     <div class="stat-wrapper theme-transition" :class="mode">
       <h2 class="heading">{{ name }}</h2>
