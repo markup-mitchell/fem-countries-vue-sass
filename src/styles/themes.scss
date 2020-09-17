@@ -1,13 +1,21 @@
 .dark {
   background-color: #202c36;
-  // --primary-2: #2b3844;
   color: #ffffff;
 }
 
 .light {
   background-color: #f2f2f2;
-  // --primary-2: #2b3844;
   color: #111517;
+}
+
+.card--dark {
+  background-color: #2b3844;
+  color: white;
+}
+
+.card--light {
+  background-color: white;
+  color: #2b3844;
 }
 
 .theme-transition {

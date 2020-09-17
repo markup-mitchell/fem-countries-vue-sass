@@ -3,7 +3,10 @@
     <div class="flag-wrapper">
       <img :src="flag" :alt="name + ' flag'" loading="lazy" />
     </div>
-    <div class="stat-wrapper theme-transition" :class="mode">
+    <div
+      class="stat-wrapper theme-transition"
+      :class="mode === 'dark' ? 'card--dark' : 'card--light'"
+    >
       <h2 class="heading">{{ name }}</h2>
       <p>Population: {{ population }}</p>
       <p>Region: {{ region }}</p>
@@ -43,9 +46,6 @@
       text-align: left;
       margin: 0;
     }
-  }
-  .dark {
-    background-color: #2b3844;
   }
 }
 </style>
