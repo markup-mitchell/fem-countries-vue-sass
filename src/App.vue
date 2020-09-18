@@ -6,16 +6,19 @@
     >
       <div class="header__contents">
         <h1>Where in the world?</h1>
-        <DarkModeToggle v-on:toggle="toggleMode" :darkMode="darkMode" />
+        <DarkModeToggle @toggle="toggleMode" :darkMode="darkMode" />
       </div>
     </header>
     <div class="page-wrapper">
       <div class="filter-layout">
-        <Filters />
+        <Filters
+          :value="currentRegion"
+          @update-current-region="updateCurrentRegion"
+        />
       </div>
       <div class="grid">
         <div
-          v-for="country in selectedRegion"
+          v-for="country in countriesInRegion"
           :key="country.alpha2code"
           class="card-wrapper"
         >
@@ -43,23 +46,33 @@ export default {
   data() {
     return {
       countries: this.$parent.data,
-      darkMode: false
+      darkMode: false,
+      currentRegion: ''
     };
   },
   methods: {
     toggleMode() {
       this.darkMode = !this.darkMode;
+    },
+    updateCurrentRegion(newRegion) {
+      this.currentRegion = newRegion;
     }
   },
   computed: {
     mode: function() {
       return this.darkMode ? 'dark' : 'light';
     },
-    selectedRegion: function() {
-      let region = 'Europe';
-      return this.countries.filter((country) => {
-        return country.region === region;
-      });
+    regionArray: function() {
+      let regions = this.countries.map((country) => country.region);
+      let uniqueRegions = new Set(regions);
+      return uniqueRegions;
+    },
+    countriesInRegion: function() {
+      return this.currentRegion === ''
+        ? this.countries
+        : this.countries.filter(
+            (country) => country.region === this.currentRegion
+          );
     }
   }
 };

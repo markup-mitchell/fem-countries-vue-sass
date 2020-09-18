@@ -37,7 +37,7 @@
     }
   }
   .stat-wrapper {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 2.5rem;
     height: 100%;
     > * + * {
       margin-top: 0.5rem;
